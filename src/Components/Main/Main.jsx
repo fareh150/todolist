@@ -2,7 +2,6 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "./Main.css";
 
-
 const Main = () => {
 
     const [todoList, setTodoList] = useState([])
@@ -17,7 +16,19 @@ const Main = () => {
         setTodoList([...todoList, newTask]);
         setTask("");
     }
-/* 1:05:28*/
+
+    const deleteTodo = (id) => {
+        const newTodoList = todoList.filter((todo) => todo.id !== id);
+        setTodoList(newTodoList);
+    }
+
+    const completeTodo = (todo) => {
+        let temporalTodo = todoList ;
+        const position = temporalTodo.indexOf(todo);
+        temporalTodo[position].completed = !temporalTodo[position].completed;
+        setTodoList([...temporalTodo]);
+    }
+
     return <main>
         <div>
             <input type="text" placeholder="task..." 
@@ -28,7 +39,8 @@ const Main = () => {
         <ul>
             {todoList.map((item) => (
                 <li key={item.id}>
-                    <h3>{item.name}</h3>
+                    <h3 className={item.completed ? "completed" : ""} onClick={() => completeTodo(item)}>{item.name}</h3>
+                    <button onClick={() => deleteTodo(item.id)}>x</button>
                 </li>
             ))}
         </ul>

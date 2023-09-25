@@ -5,3 +5,55 @@ main {
     align-items: center;
     gap: 20px;
 }
+
+main div {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    width: 300px;
+}
+
+main div :where(input,button){
+    background-color: inherit;
+    border: 0;
+}
+
+main div input {
+    width: 260px;
+}
+
+main div button {
+    cursor: pointer;
+}
+
+main li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    max-width: 400px;
+}
+
+main li :where(h3, button) {
+    cursor: pointer;
+}
+
+main li :where(h3, button):focus {
+    background-color: inherit;
+    color: inherit;
+}
+
+button {
+    padding: 4px;
+}
+
+.completed::before {
+    content: "✔";
+    color: var(--primary);
+    padding-right: 10px;
+}
+
